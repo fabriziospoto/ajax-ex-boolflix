@@ -1,17 +1,21 @@
 
 $( document ).ready(function(e) {
-    var userInput = $('#input').val();
-        $('input').keyup(function(e){
-            var code = e.key;
-            if(code==="Enter") e.preventDefault();
-            if (code==13 || code==="Enter") {
-                ricerca(userInput);
-            }
-        });
 
-        $('#search-btn').click(function(){
+    $('#search-btn').click(function(){
+        $("#movie-details").html('');
+        var userInput = $('#input').val();
+        ricerca(userInput);
+        //$('input').val('');
+    });
+
+    $(document).keydown(function(e) {
+        if (e.keycode == 13 || e.which == 13) {
+            $("#movie-details").html('');
+            var userInput = $('#input').val();
             ricerca(userInput);
-        });
+            //$('input').val('');
+        }
+    });
 });
 
 //**************FUNZIONI
@@ -27,6 +31,7 @@ function ricerca(data) {
                 language: "it-IT"
             },
             success: function(risposta) {
+                //$("#movie-details").empty();
                 var movie = risposta.results;
                 //console.log(movie);
                 for (var i = 0; i < movie.length; i++) {
