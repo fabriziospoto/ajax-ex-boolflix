@@ -14,10 +14,23 @@ input {
     display: inline-block;
 }
 
+button {
+    cursor: pointer;
+}
+
 .searchbar {
     padding: 10px;
 }
 
 .results {
-    padding: 10px;
+    padding: 30px;
+}
+
+ul {
+    margin-top: 20px;
+}
+
+ul span {
+    color: blue;
+    font-weight: 700;
 }

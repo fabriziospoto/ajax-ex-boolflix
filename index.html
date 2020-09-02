@@ -2,22 +2,34 @@
 <html lang="en" dir="ltr">
     <head>
         <meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">  <!-- Meta per responsive -->
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0">  <!-- Meta per responsive -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.2/handlebars.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>  <!-- jQuery -->
         <link rel="stylesheet" href="css/style.css">
 	    <!-- All'occorrenza aggiungere Google Font, fontawesome (prima di link css) o Handlebars (prima di link css) -->
-        <title></title>
+        <title>ajax-ex-boolflix</title>
     </head>
     <body>
         <div class="searchbar">
-            <input type="text" value="">
-            <button type="button" name="button">Cerca</button>
+            <input id="input" type="text" value="">
+            <button id="search-btn" type="button" name="button">Cerca</button>
         </div>
         <div class="results">
-            <ul>
-                
-            </ul>
+            <div id="movie-details">
+
+            </div>
         </div>
+
+        <script id="entry-template" type="text/x-handlebars-template">
+            <ul>
+                <li><span>Titolo:</span> {{title}}</li>
+                <li><span>Titolo originale:</span> {{original_title}}</li>
+                <li><span>Lingua:</span> {{original_language}}</li>
+                <li><span>Voto:</span> {{vote_average}}</li>
+            </ul>
+        </script>
+
+
         <script src="js/script.js" charset="utf-8"></script>   <!-- Javascript -->
     </body>
 </html>
