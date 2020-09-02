@@ -1,0 +1,23 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.clearfix::after {
+    display: table;
+    content: '';
+    clear: both;
+}
+
+input {
+    display: inline-block;
+}
+
+.searchbar {
+    padding: 10px;
+}
+
+.results {
+    padding: 10px;
+}
