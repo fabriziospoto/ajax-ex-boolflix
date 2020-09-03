@@ -3,6 +3,7 @@
     <head>
         <meta charset="utf-8">
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.2/handlebars.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>  <!-- jQuery -->
         <link rel="stylesheet" href="css/style.css">
@@ -24,7 +25,7 @@
                 <li><span>Titolo:</span> {{titolo}}</li>
                 <li><span>Titolo originale:</span> {{original_title}}</li>
                 <li><span>Lingua:</span> {{original_language}}</li>
-                <li><span>Voto:</span> {{vote_average}}</li>
+                <li><span>Voto:</span> {{{vote_average}}}</li>
             </ul>
         </script>
         <script id="no-results-template" type="text/x-handlebars-template">

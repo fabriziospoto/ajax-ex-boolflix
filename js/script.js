@@ -54,7 +54,7 @@ function printFilm(data) {
             titolo: data[i].title,
             original_title: data[i].original_title,
             original_language: data[i].original_language,
-            vote_average: data[i].vote_average
+            vote_average: stars(data[i].vote_average)
         };
         var html = template(context);
         $('#movie-details').append(html);
@@ -71,6 +71,20 @@ function noResults() {
     $('#movie-details').append(html);
 }
 
+
+function stars(num) {
+    //var votoCinque = num / 2;
+    var stella = Math.ceil(num/2);
+    var votoStella = '';
+    for (var i = 0; i < 5; i++) {
+        if (i < stella) {
+            votoStella += '<i class="fas fa-star"></i>';
+        } else {
+            votoStella += '<i class="far fa-star"></i>';
+        }
+    }
+    return votoStella;
+}
 // function reset() {
 //     //$('#movie-details').val('')
 //     $('#movie-details').html('');
