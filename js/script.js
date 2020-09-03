@@ -53,13 +53,17 @@ function printFilm(data) {
         var context = {
             titolo: data[i].title,
             original_title: data[i].original_title,
-            original_language: data[i].original_language,
+            original_language: flags(data[i].original_language),
             vote_average: stars(data[i].vote_average)
         };
         var html = template(context);
         $('#movie-details').append(html);
     }
 }
+
+// function printTV(serie) {
+//
+// }
 
 function noResults() {
     var source = $("#no-results-template").html();
@@ -70,7 +74,6 @@ function noResults() {
     var html = template(context);
     $('#movie-details').append(html);
 }
-
 
 function stars(num) {
     //var votoCinque = num / 2;
@@ -85,6 +88,22 @@ function stars(num) {
     }
     return votoStella;
 }
+
+function flags(elemento) {
+    var bandiera = '';
+    if (elemento == 'it') {
+        var bandiera = '<img src="img/it.png" id="flag" alt="Italian flag>';
+        //return bandiera
+    } else if (elemento == 'en') {
+        var bandiera = '<img src="img/en.png" id="flag" alt="Italian flag>';
+        //return bandiera
+    } else {
+        //return elemento;
+        var bandiera = elemento;
+    }
+    return bandiera
+}
+
 // function reset() {
 //     //$('#movie-details').val('')
 //     $('#movie-details').html('');

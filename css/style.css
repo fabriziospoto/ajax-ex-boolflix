@@ -34,3 +34,13 @@ ul span {
     color: blue;
     font-weight: 700;
 }
+
+#flag {
+    width: 30px;
+    height: auto;
+    /* display: block; */
+}
+
+#movie-details ul li i {
+    color: Gold;
+}
