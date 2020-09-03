@@ -44,6 +44,27 @@ function ricerca(data) {
             }
         }
     )
+    $.ajax(
+        {
+            url:"https://api.themoviedb.org/3/search/tv",
+            method: "GET",
+            data: {
+                api_key: "57d971dc9f1c534367f2c21507e580d4",
+                query: data,
+                language: "it-IT"
+            },
+            success: function(risposta) {
+                if(risposta.total_results > 0) {
+                    printTV(risposta.results);
+                } else {
+                    noResults();
+                }
+            },
+            error: function() {
+                alert('Attenzione! Errore.');
+            }
+        }
+    )
 }
 
 function printFilm(data) {
@@ -61,9 +82,20 @@ function printFilm(data) {
     }
 }
 
-// function printTV(serie) {
-//
-// }
+function printTV(data) {
+    var source = $("#tv-template").html();
+    var template = Handlebars.compile(source);
+    for (var i = 0; i < data.length; i++) {
+        var context = {
+            name: data[i].name,
+            original_name: data[i].original_name,
+            original_language: flags(data[i].original_language),
+            vote_average: stars(data[i].vote_average)
+        };
+        var html = template(context);
+        $('#movie-details').append(html);
+    }
+}
 
 function noResults() {
     var source = $("#no-results-template").html();
@@ -92,13 +124,10 @@ function stars(num) {
 function flags(elemento) {
     var bandiera = '';
     if (elemento == 'it') {
-        var bandiera = '<img src="img/it.png" id="flag" alt="Italian flag>';
-        //return bandiera
+        var bandiera = '<img src="img/it.png" id="flag" alt="Italian flag">';
     } else if (elemento == 'en') {
-        var bandiera = '<img src="img/en.png" id="flag" alt="Italian flag>';
-        //return bandiera
+        var bandiera = '<img src="img/en.png" id="flag" alt="English flag">';
     } else {
-        //return elemento;
         var bandiera = elemento;
     }
     return bandiera

@@ -28,8 +28,19 @@
                 <li><span>Voto:</span> {{{vote_average}}}</li>
             </ul>
         </script>
+
         <script id="no-results-template" type="text/x-handlebars-template">
             <div>{{noResults}}</div>
+        </script>
+
+        <script id="tv-template" type="text/x-handlebars-template">
+            <ul>
+                <li><span>Tipo:</span> Serie tv</li>
+                <li><span>Titolo:</span> {{name}}</li>
+                <li><span>Titolo originale:</span> {{original_name}}</li>
+                <li><span>Lingua:</span> {{{original_language}}}</li>
+                <li><span>Voto:</span> {{{vote_average}}}</li>
+            </ul>
         </script>
         <script src="js/script.js" charset="utf-8"></script>   <!-- Javascript -->
     </body>
