@@ -3,6 +3,7 @@
     <head>
         <meta charset="utf-8">
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.2/handlebars.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>  <!-- jQuery -->
@@ -15,18 +16,30 @@
             <button id="search-btn" type="button" name="button">Cerca</button>
         </div>
         <div class="results">
+            <h2>Film</h2>
             <div id="movie-details">
+
+            </div>
+            <h2>TV</h2>
+            <div id="tv-details">
 
             </div>
         </div>
 
         <script id="entry-template" type="text/x-handlebars-template">
+        <div class="locandina">
+            <img src="{{{poster_path}}}" alt="poster">
             <ul>
+                <!-- <li><span>Tipo:</span> {{tipo}}</li> -->
                 <li><span>Titolo:</span> {{titolo}}</li>
                 <li><span>Titolo originale:</span> {{original_title}}</li>
                 <li><span>Lingua:</span> {{{original_language}}}</li>
                 <li><span>Voto:</span> {{{vote_average}}}</li>
             </ul>
+            <div class="fascia f-bg1">
+                <p>FILM</p>
+            </div>
+        </div>
         </script>
 
         <script id="no-results-template" type="text/x-handlebars-template">
@@ -34,13 +47,19 @@
         </script>
 
         <script id="tv-template" type="text/x-handlebars-template">
-            <ul>
-                <li><span>Tipo:</span> Serie tv</li>
-                <li><span>Titolo:</span> {{name}}</li>
-                <li><span>Titolo originale:</span> {{original_name}}</li>
-                <li><span>Lingua:</span> {{{original_language}}}</li>
-                <li><span>Voto:</span> {{{vote_average}}}</li>
-            </ul>
+            <div class="locandina">
+                <img src="{{{poster_path}}}" alt="poster">
+                <ul>
+                    <!-- <li><span>Tipo:</span> Serie tv</li> -->
+                    <li><span>Titolo:</span> {{titolo}}</li>
+                    <li><span>Titolo originale:</span> {{original_title}}</li>
+                    <li><span>Lingua:</span> {{{original_language}}}</li>
+                    <li><span>Voto:</span> {{{vote_average}}}</li>
+                </ul>
+                <div class="fascia f-bg2">
+                    <p>TV</p>
+                </div>
+            </div>
         </script>
         <script src="js/script.js" charset="utf-8"></script>   <!-- Javascript -->
     </body>

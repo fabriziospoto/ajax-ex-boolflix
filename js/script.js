@@ -4,8 +4,14 @@ $( document ).ready(function(e) {
     $('#search-btn').click(function(){
         //reset()
         $("#movie-details").html('');
+        $("#tv-details").html('');
+
         var userInput = $('#input').val();
-        ricerca(userInput);
+        var url1 = "https://api.themoviedb.org/3/search/movie"
+        var url2 = "https://api.themoviedb.org/3/search/tv"
+        ricerca(userInput,url1,'Film');
+        ricerca(userInput,url2,'TV');
+
         $('input').val('');
     });
 
@@ -13,8 +19,14 @@ $( document ).ready(function(e) {
         if (e.keycode == 13 || e.which == 13) {
             //reset()
             $("#movie-details").html('');
+            $("#tv-details").html('');
+
             var userInput = $('#input').val();
-            ricerca(userInput);
+            var url1 = "https://api.themoviedb.org/3/search/movie"
+            var url2 = "https://api.themoviedb.org/3/search/tv"
+            ricerca(userInput,url1,'Film');
+            ricerca(userInput,url2,'TV');
+
             $('input').val('');
         }
     });
@@ -22,10 +34,10 @@ $( document ).ready(function(e) {
 
 //**************FUNZIONI
 
-function ricerca(data) {
+function ricerca(data,url,type) {
     $.ajax(
         {
-            url:"https://api.themoviedb.org/3/search/movie",
+            url: url,
             method: "GET",
             data: {
                 api_key: "57d971dc9f1c534367f2c21507e580d4",
@@ -34,30 +46,13 @@ function ricerca(data) {
             },
             success: function(risposta) {
                 if(risposta.total_results > 0) {
-                    printFilm(risposta.results);
-                } else {
-                    noResults();
-                }
-            },
-            error: function() {
-                alert('Attenzione! Errore.');
-            }
-        }
-    )
-    $.ajax(
-        {
-            url:"https://api.themoviedb.org/3/search/tv",
-            method: "GET",
-            data: {
-                api_key: "57d971dc9f1c534367f2c21507e580d4",
-                query: data,
-                language: "it-IT"
-            },
-            success: function(risposta) {
-                if(risposta.total_results > 0) {
-                    printTV(risposta.results);
-                } else {
-                    noResults();
+                    printResult(risposta.results, type);
+                    // printResult(risposta.results, 'TV');
+                } else if (type == 'TV'){
+                    var elementi = $('#movie-details').html();
+                    if (elementi == '') {
+                        noResults(type);
+                    }
                 }
             },
             error: function() {
@@ -67,53 +62,64 @@ function ricerca(data) {
     )
 }
 
-function printFilm(data) {
-    var source = $("#entry-template").html();
+function printResult(data, type) {
+    if (type == 'Film') {
+        var source = $("#entry-template").html();
+    } else {
+        var source = $("#tv-template").html();
+    }
+    // var source = $("#entry-template").html();
     var template = Handlebars.compile(source);
+
     for (var i = 0; i < data.length; i++) {
+        if(type == 'Film') {
+            var title = data[i].title;
+            var original_title = data[i].original_title;
+        } else if (type == 'TV') {
+            var title = data[i].name;
+            var original_title = data[i].original_name;
+        }
         var context = {
-            titolo: data[i].title,
-            original_title: data[i].original_title,
+            tipo: type,
+            titolo: title,
+            original_title: original_title,
             original_language: flags(data[i].original_language),
-            vote_average: stars(data[i].vote_average)
+            vote_average: stars(data[i].vote_average),
+            poster_path: poster(data[i].poster_path)
         };
         var html = template(context);
-        $('#movie-details').append(html);
+        if (type == 'Film') {
+            $('#movie-details').append(html);
+        } else {
+            $('#tv-details').append(html);
+        }
     }
 }
 
-function printTV(data) {
-    var source = $("#tv-template").html();
-    var template = Handlebars.compile(source);
-    for (var i = 0; i < data.length; i++) {
-        var context = {
-            name: data[i].name,
-            original_name: data[i].original_name,
-            original_language: flags(data[i].original_language),
-            vote_average: stars(data[i].vote_average)
-        };
-        var html = template(context);
-        $('#movie-details').append(html);
-    }
-}
-
-function noResults() {
+function noResults(type) {
     var source = $("#no-results-template").html();
     var template = Handlebars.compile(source);
     var context = {
         noResults: 'Non ci sono risultati'
     };
     var html = template(context);
-    $('#movie-details').append(html);
+    if (type == 'Film') {
+        $('#movie-details').append(html);
+    } else {
+        $('#tv-details').append(html);
+    }
 }
 
 function stars(num) {
+    var resto = num % 2;
     //var votoCinque = num / 2;
     var stella = Math.ceil(num/2);
     var votoStella = '';
     for (var i = 0; i < 5; i++) {
         if (i < stella) {
             votoStella += '<i class="fas fa-star"></i>';
+        } else if (resto !=0){
+            votoStella += '<i class="fas fa-star-half-alt"></i>';
         } else {
             votoStella += '<i class="far fa-star"></i>';
         }
@@ -122,6 +128,14 @@ function stars(num) {
 }
 
 function flags(elemento) {
+    //***METODO 1
+    // var language = ['en', 'it'];
+    // if (language.includes(elemento)){
+    //     return '<img src="img/' + elemento + '.png" id="flag">';
+    // }
+    // return elemento;
+
+    //***METODO 2
     var bandiera = '';
     if (elemento == 'it') {
         var bandiera = '<img src="img/it.png" id="flag" alt="Italian flag">';
@@ -131,6 +145,13 @@ function flags(elemento) {
         var bandiera = elemento;
     }
     return bandiera
+}
+
+function poster(loc) {
+    if (loc == null) {
+        return 'img/not-found.png';
+    }
+    return 'https://image.tmdb.org/t/p/w300' + loc;
 }
 
 // function reset() {
