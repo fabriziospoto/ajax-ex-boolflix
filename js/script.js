@@ -6,11 +6,7 @@ $( document ).ready(function(e) {
         $("#movie-details").html('');
         $("#tv-details").html('');
 
-        var userInput = $('#input').val();
-        var url1 = "https://api.themoviedb.org/3/search/movie"
-        var url2 = "https://api.themoviedb.org/3/search/tv"
-        ricerca(userInput,url1,'Film');
-        ricerca(userInput,url2,'TV');
+        init()
 
         $('input').val('');
     });
@@ -21,18 +17,30 @@ $( document ).ready(function(e) {
             $("#movie-details").html('');
             $("#tv-details").html('');
 
-            var userInput = $('#input').val();
-            var url1 = "https://api.themoviedb.org/3/search/movie"
-            var url2 = "https://api.themoviedb.org/3/search/tv"
-            ricerca(userInput,url1,'Film');
-            ricerca(userInput,url2,'TV');
+            init()
 
             $('input').val('');
         }
     });
+
+    // $('#movie-details').hover(function(event) {
+    //     $(this).find('#dettagli').show();
+    //     $(this).css("background-color", "rgba(0,0,0,0.7)");
+    // });
+    // $('#movie-details').on("mouseenter mouseleave", "#", function(e){
+    //     $(this).css("background-color", "rgba(0,0,0,0.7)");
+    // });
 });
 
 //**************FUNZIONI
+
+function init() {
+    var userInput = $('#input').val();
+    var url1 = "https://api.themoviedb.org/3/search/movie"
+    var url2 = "https://api.themoviedb.org/3/search/tv"
+    ricerca(userInput,url1,'Film');
+    ricerca(userInput,url2,'TV');
+}
 
 function ricerca(data,url,type) {
     $.ajax(
@@ -85,7 +93,8 @@ function printResult(data, type) {
             original_title: original_title,
             original_language: flags(data[i].original_language),
             vote_average: stars(data[i].vote_average),
-            poster_path: poster(data[i].poster_path)
+            poster_path: poster(data[i].poster_path),
+            overview: data[i].overview.substring(0,249) + '[...]'
         };
         var html = template(context);
         if (type == 'Film') {

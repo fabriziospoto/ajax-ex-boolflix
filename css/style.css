@@ -4,7 +4,7 @@
     box-sizing: border-box;
 }
 
-h1, h2, h3, h4, h5, h6, ul, li, p, span {
+h2, h3, h4, h5, h6, ul, li, p, span {
     font-family: 'Lato', sans-serif;
 }
 
@@ -15,24 +15,67 @@ h1, h2, h3, h4, h5, h6, ul, li, p, span {
 }
 
 .container {
-    max-width: 80%;
+    max-width: 82%;
     margin: 0 auto;
 }
 
+header {
+    width: 100%;
+    height: 70px;
+    line-height: 70px;
+    background-color: black;
+}
+
+.logo {
+    width: 200px;
+    height: 70px;
+    font-family: 'Bebas Neue', cursive;
+    color: red;
+    font-size: 25px;
+    text-transform: uppercase;
+    font-weight: 700;
+    float: left;
+}
+
 input {
+    height: 25px;
     display: inline-block;
+    background-color: black;
+    border: 2px solid red;
+    border-radius: 5px;
+    color: red;
 }
 
 button {
+    width: 70px;
+    height: 25px;
     cursor: pointer;
+    background-color: black;
+    border: 2px solid red;
+    border-radius: 5px;
+    color: red;
 }
 
 .searchbar {
-    padding: 10px;
+    line-height: 70px;
+    float: right;
+}
+
+main {
+    width: 100%;
+    height: calc(100vh - 70px);
+    overflow-y: auto;
+    background: linear-gradient(0deg, rgba(0,0,0,1) 28%, rgba(148,143,143,1) 85%);
 }
 
 .results {
     padding: 30px;
+}
+
+h2 {
+    margin-top: 40px;
+    text-transform: uppercase;
+    color: white;
 }
 
 ul {
@@ -66,11 +109,21 @@ ul span {
     color: Gold;
 }
 
+/* .locandina:hover {
+    background-color: rgba(0,0,0,0.7);
+    z-index: 2;
+} */
+/* .locandina:hover {
+    background-color: rgba(0,0,0,0.7);
+} */
+
 .locandina {
     width: 304px;
     height: 100%;
     border: 2px solid black;
     margin-top: 20px;
+    margin-left: 15px;
+    margin-right: 15px;
     object-fit: cover;
     position: relative;
     display: inline-block;
@@ -103,12 +156,27 @@ img {
     background-color: blue;
 }
 
+#dettagli {
+    display: none;
+}
+
+.locandina:hover #dettagli{
+    display: block;
+}
+
 .overlay {
-    background-color: rgba(0, 0, 0, 0.3);
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.7);
     position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    /* display: none; */
+    z-index: 2;
+    display: none;
+}
+
+/* .overlay:hover {
+    display: block;
+} */
+
+.locandina:hover .overlay {
+    display: block;
 }

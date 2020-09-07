@@ -4,6 +4,7 @@
         <meta charset="utf-8">
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.2/handlebars.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>  <!-- jQuery -->
@@ -11,33 +12,47 @@
         <title>ajax-ex-boolflix</title>
     </head>
     <body>
-        <div class="searchbar">
-            <input id="input" type="text" value="">
-            <button id="search-btn" type="button" name="button">Cerca</button>
-        </div>
-        <div class="container">
-            <div class="results">
-                <h2>Film</h2>
-                <div id="movie-details">
-
+        <header >
+            <div class="container">
+                <div class="logo">
+                    <h1>Boolflix</h1>
                 </div>
-                <h2>TV</h2>
-                <div id="tv-details">
-
+                <div class="searchbar">
+                    <input id="input" type="text" value="">
+                    <button id="search-btn" type="button" name="button">Cerca</button>
                 </div>
             </div>
-        </div>
+        </header>
+
+        <main>
+            <div class="container">
+                <div class="results">
+                    <h2>Film</h2>
+                    <div id="movie-details">
+
+                    </div>
+                    <h2>TV</h2>
+                    <div id="tv-details">
+
+                    </div>
+                </div>
+            </div>
+        </main>
 
         <script id="entry-template" type="text/x-handlebars-template">
         <div class="locandina">
-            <img src="{{{poster_path}}}" alt="poster">
-            <ul>
-                <!-- <li><span>Tipo:</span> {{tipo}}</li> -->
-                <li><span>Titolo:</span> {{titolo}}</li>
-                <li><span>Titolo originale:</span> {{original_title}}</li>
-                <li><span>Lingua:</span> {{{original_language}}}</li>
-                <li><span>Voto:</span> {{{vote_average}}}</li>
-            </ul>
+            <img src="{{{poster_path}}}" alt="{{titolo}}">
+            <div class="overlay">
+                <ul id="dettagli">
+                    <!-- <li><span>Tipo:</span> {{tipo}}</li> -->
+                    <li><span>Titolo:</span> {{titolo}}</li>
+                    <li><span>Titolo originale:</span> {{original_title}}</li>
+                    <li><span>Lingua:</span> {{{original_language}}}</li>
+                    <li><span>Voto:</span> {{{vote_average}}}</li>
+                    <li><span>Overview:</span> {{overview}}</li>
+                </ul>
+            </div>
+            <!-- <img src="{{{poster_path}}}" alt="{{titolo}}"> -->
             <div class="fascia f-bg1">
                 <p>FILM</p>
             </div>
@@ -50,14 +65,18 @@
 
         <script id="tv-template" type="text/x-handlebars-template">
             <div class="locandina">
-                <img src="{{{poster_path}}}" alt="poster">
-                <ul>
-                    <!-- <li><span>Tipo:</span> Serie tv</li> -->
-                    <li><span>Titolo:</span> {{titolo}}</li>
-                    <li><span>Titolo originale:</span> {{original_title}}</li>
-                    <li><span>Lingua:</span> {{{original_language}}}</li>
-                    <li><span>Voto:</span> {{{vote_average}}}</li>
-                </ul>
+                <img src="{{{poster_path}}}" alt="{{titolo}}">
+                <div class="overlay">
+                    <ul id="dettagli">
+                        <!-- <li><span>Tipo:</span> Serie tv</li> -->
+                        <li><span>Titolo:</span> {{titolo}}</li>
+                        <li><span>Titolo originale:</span> {{original_title}}</li>
+                        <li><span>Lingua:</span> {{{original_language}}}</li>
+                        <li><span>Voto:</span> {{{vote_average}}}</li>
+                        <li><span>Overview:</span> {{overview}}</li>
+                    </ul>
+                </div>
+                <!-- <img src="{{{poster_path}}}" alt="{{titolo}}"> -->
                 <div class="fascia f-bg2">
                     <p>TV</p>
                 </div>
