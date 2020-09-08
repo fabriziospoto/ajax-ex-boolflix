@@ -12,6 +12,7 @@
         <title>ajax-ex-boolflix</title>
     </head>
     <body>
+        <!-- HEADER -->
         <header >
             <div class="container">
                 <div class="logo">
@@ -24,6 +25,7 @@
             </div>
         </header>
 
+        <!-- MAIN -->
         <main>
             <div class="container">
                 <div class="results">
@@ -39,12 +41,12 @@
             </div>
         </main>
 
+        <!-- HANDLEBARS Film Template -->
         <script id="entry-template" type="text/x-handlebars-template">
         <div class="locandina">
             <img src="{{{poster_path}}}" alt="{{titolo}}">
-            <div>
+            <div class="overlay">
                 <ul id="dettagli">
-                    <!-- <li><span>Tipo:</span> {{tipo}}</li> -->
                     <li><span>Titolo:</span> {{titolo}}</li>
                     <li><span>Titolo originale:</span> {{original_title}}</li>
                     <li><span>Lingua:</span> {{{original_language}}}</li>
@@ -52,23 +54,23 @@
                     <li><span>Overview:</span> {{overview}}</li>
                 </ul>
             </div>
-            <!-- <img src="{{{poster_path}}}" alt="{{titolo}}"> -->
             <div class="fascia f-bg1">
                 <p>FILM</p>
             </div>
         </div>
         </script>
-
+        
+        <!-- HANDLEBARS No Results Template -->
         <script id="no-results-template" type="text/x-handlebars-template">
             <div class="no-results">{{noResults}}</div>
         </script>
 
+        <!-- HANDLEBARS Tv Template -->
         <script id="tv-template" type="text/x-handlebars-template">
             <div class="locandina">
                 <img src="{{{poster_path}}}" alt="{{titolo}}">
                 <div class="overlay">
                     <ul id="dettagli">
-                        <!-- <li><span>Tipo:</span> Serie tv</li> -->
                         <li><span>Titolo:</span> {{titolo}}</li>
                         <li><span>Titolo originale:</span> {{original_title}}</li>
                         <li><span>Lingua:</span> {{{original_language}}}</li>
@@ -76,7 +78,6 @@
                         <li><span>Overview:</span> {{overview}}</li>
                     </ul>
                 </div>
-                <!-- <img src="{{{poster_path}}}" alt="{{titolo}}"> -->
                 <div class="fascia f-bg2">
                     <p>TV</p>
                 </div>

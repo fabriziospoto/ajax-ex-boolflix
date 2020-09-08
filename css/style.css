@@ -1,3 +1,4 @@
+/* GENERALI */
 * {
     margin: 0;
     padding: 0;
@@ -19,6 +20,7 @@ h2, h3, h4, h5, h6, ul, li, p, span {
     margin: 0 auto;
 }
 
+/* HEADER */
 header {
     width: 100%;
     height: 70px;
@@ -61,6 +63,8 @@ button {
     float: right;
 }
 
+
+/* MAIN */
 main {
     width: 100%;
     height: calc(100vh - 70px);
@@ -79,8 +83,8 @@ h2 {
 }
 
 ul {
-    margin-top: 20px;
-    margin-left: 20px;
+    margin: 20px;
+    /* margin-left: 20px; */
     position: absolute;
     top: 0;
     left: 0;
@@ -109,14 +113,6 @@ ul span {
     color: Gold;
 }
 
-/* .locandina:hover {
-    background-color: rgba(0,0,0,0.7);
-    z-index: 2;
-} */
-/* .locandina:hover {
-    background-color: rgba(0,0,0,0.7);
-} */
-
 .locandina {
     width: 304px;
     height: 100%;
@@ -127,7 +123,6 @@ ul span {
     object-fit: cover;
     position: relative;
     display: inline-block;
-    /* text-align: center; */
 }
 
 
@@ -156,6 +151,7 @@ img {
     background-color: blue;
 }
 
+/* HOVER */
 #dettagli {
     display: none;
 }
@@ -164,19 +160,17 @@ img {
     display: block;
 }
 
-/* .overlay {
-    width: 100%;
-    height: 100%;
+.overlay {
     background-color: rgba(0,0,0,0.7);
     position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
     z-index: 2;
     display: none;
-} */
+}
 
-/* .overlay:hover {
+.locandina:hover .overlay {
     display: block;
-} */
-
-/* .locandina:hover .overlay {
-    display: block;
-} */
+}
