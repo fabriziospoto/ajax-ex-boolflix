@@ -40,10 +40,10 @@ header {
 input {
     height: 25px;
     display: inline-block;
-    background-color: black;
-    border: 2px solid red;
+    background-color: 	#646060;
+    border: 2px solid black;
     border-radius: 5px;
-    color: red;
+    color: black;
 }
 
 button {
@@ -51,9 +51,9 @@ button {
     height: 25px;
     cursor: pointer;
     background-color: black;
-    border: 2px solid red;
+    border: 2px solid #646060;
     border-radius: 5px;
-    color: red;
+    color: #646060;
 }
 
 .searchbar {
@@ -164,19 +164,19 @@ img {
     display: block;
 }
 
-.overlay {
+/* .overlay {
     width: 100%;
     height: 100%;
     background-color: rgba(0,0,0,0.7);
     position: absolute;
     z-index: 2;
     display: none;
-}
+} */
 
 /* .overlay:hover {
     display: block;
 } */
 
-.locandina:hover .overlay {
+/* .locandina:hover .overlay {
     display: block;
-}
+} */
